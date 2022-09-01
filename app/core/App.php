@@ -22,7 +22,7 @@
 				}
 				unset($url[0]);
 			}
-			$this->controller = 'app/controllers/' . $this->controller; //provide a fully qualified classname
+			$this->controller = 'app\\controllers\\' . $this->controller; //provide a fully qualified classname
 			$this->controller = new $this->controller;
 
 			//use the second part to determine the method to run
