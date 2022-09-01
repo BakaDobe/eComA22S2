@@ -15,17 +15,22 @@ class Main extends \app\core\Controller{
 	}
 
 	public function foods(){
-		var_dump($_POST);
+		//TODO: refactor to place data access in a model class!
+
+
+		//var_dump($_POST);
 		//the form is submitted
 		if (isset($_POST['action'])) {
-			$fh = fopen('app/Resources/foods.txt', 'a');
-			flock($fh, LOCK_EX);
-			fwrite($fh, $_POST['new_food'] . "\n");
-			flock($fh, LOCK_UN);
-			fclose($fh);
+			$food = new \app\models\Food();
+			$food->name = $_POST['new_food'];
+			$food->insert();
 		}
-		//read a file 
-		$foods = file('app/Resources/foods.txt');
+		
+		//get all the food 
+		$food = new \app\models\Food();
+		$foods = $food->getAll();
+
+
 		//call a view that displays the file contents
 		$this->view('Main/foods',$foods);
 	}

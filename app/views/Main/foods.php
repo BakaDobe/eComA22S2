@@ -5,12 +5,16 @@
 <body>
 Here is a list of foods from our database
 <table>
-
+	<tr><th>id</th><th>name</th><th>action</th></tr>
 <?php
 	$c= count($data);
 	$i= 0;
-foreach ($data as $key => $value){
-	echo "<tr><td>$value</td></tr>";
+foreach ($data as $food){
+	echo "<tr>
+			<td>$food->id</td>
+			<td>$food->name</td>
+			<td><a href='/Food/delete/$food->id'>delete</a></td>
+		</tr>";
 }
 ?>
 </table>
