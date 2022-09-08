@@ -34,4 +34,15 @@ class Main extends \app\core\Controller{
 		//call a view that displays the file contents
 		$this->view('Main/foods',$foods);
 	}
+
+	public function foodsJSON(){
+		$food = new \app\models\Food();
+		$foods = $food->getAll();
+
+		echo json_encode($foods);
+	}
+
+	public function foodsDisplay(){
+		$this->view('Main/foodsDisplay');
+	}
 }
